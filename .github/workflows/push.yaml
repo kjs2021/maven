@@ -14,8 +14,9 @@ jobs:
       uses: actions/checkout@master
       with:
         ref: push
-#     - name: build
-#       uses: github-actions-x/hugo@master
+    - name: creat file
+      run:  touch {{github.workspace }}/file1.yaml
+    - run: ls {{github.workspace }}
     - name: push
       uses: github-actions-x/commit@v2.9
       with:
@@ -23,5 +24,5 @@ jobs:
         push-branch: 'push'
         commit-message: 'publish'
         force-add: 'true'
-        files: a.txt b.txt c.txt dirA/ dirB/ dirC/a.txt
+        files: file1.yaml
         
