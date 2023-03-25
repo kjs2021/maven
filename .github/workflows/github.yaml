@@ -10,7 +10,8 @@ env:
 #  image: ${{ github.event.client_payload.img }}
 #  sha: ${{ github.event.client_payload.sha }}
  filename: ${{ github.workspace }}/dev/deploy.yaml
- image: hello:1.0.0
+ dir: ${{ github.workspace }}/dev
+ image: hello:1.0.9
  
 jobs:
   workspaceinfo:
@@ -25,7 +26,7 @@ jobs:
 #       - run: echo 'env path is ${{ github.env }}'
       - run: echo 'filename from env is  ${{ env.filename }}'
       - run: ls ${{ github.workspace }}/dev
-      - run: echo "the ls in echo is \n$(ls {{ env.filename }})"
+      - run: echo "the ls in echo is \n$(ls ${{ env.dir}})"
       - run: sed -i 's/image.*/image:\ ${{ env.image }}/' ${{ env.filename }}
       - run: echo "new file   $(cat ${{ env.filename }})"
       - name: push
