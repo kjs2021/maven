@@ -1,9 +1,9 @@
 name: publish
 
 on:
-  push:
-    branches:
-    - push
+#   push:
+#     branches:
+#     - push
   workflow_dispatch:
     
 jobs:
