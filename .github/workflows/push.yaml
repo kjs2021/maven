@@ -25,7 +25,7 @@ jobs:
         ref: push
     - name: update image changes
 #       run: touch file1
-    - run: sed -i 's/image.*/image:\ ${{ env.image }}/' ${{ env.filename }}
+      run: sed -i 's/image.*/image:\ ${{ env.image }}/' ${{ env.filename }}
     - name: Commit & Push changes
       uses: actions-js/push@master
       with:
