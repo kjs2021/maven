@@ -25,9 +25,9 @@ jobs:
 #       - run: echo 'env path is ${{ github.env }}'
       - run: echo 'filename from env is  ${{ env.filename }}'
       - run: ls ${{ github.workspace }}/dev
-      - run: echo "the ls in echo is \n$(ls {{ github.workspace }}/dev)"
+      - run: echo "the ls in echo is \n$(ls {{ env.filename }})"
       - run: sed -i 's/image.*/image:\ ${{ env.image }}/' ${{ env.filename }}
-#       - run: echo 'new file   $(cat ${{ env.filename }})'
+      - run: echo "new file   $(cat ${{ env.filename }})"
       - name: push
         uses: github-actions-x/commit@v2.9
         
