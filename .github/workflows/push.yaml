@@ -15,8 +15,8 @@ jobs:
       with:
         ref: push
     - name: creat file
-      run:  touch {{github.workspace }}/file1.yaml
-    - run: ls {{github.workspace }}
+      run:  touch ${{ github.workspace }}/file1.yaml
+    - run: ls ${{ github.workspace }}
     - name: push
       uses: github-actions-x/commit@v2.9
       with:
