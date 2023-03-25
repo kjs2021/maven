@@ -8,5 +8,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         
-      - run: echo ${{ github.event.client_payload.sha }}
-      - run: echo ${{ github.event.client_payload.img }}
+      - run: echo 'sha value is ${{ github.event.client_payload.sha }}'
+      - run: echo 'image name is ${{ github.event.client_payload.img }}'
+      - run: echo 'Repo is ${{ github.event.client_payload.repo}}'
+
