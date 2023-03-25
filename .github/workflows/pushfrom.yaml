@@ -6,15 +6,15 @@ on:
 env:
  image: ${{ github.event.client_payload.img }}
  sha: ${{ github.event.client_payload.sha }}
- New_Image: ${{ env.image }}:${{ env.sha }}
+ 
 jobs:
   myEvent:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
         
-      - run: echo 'sha value is ${{ github.event.client_payload.sha }}'
+      - run: echo 'sha value in env is ${{ env.sha }}'
       - run: echo 'image name is ${{ github.event.client_payload.img }}'
       - run: echo 'Repo is ${{ github.event.client_payload.repo}}'
-      - run: echo 'New image version is ${{ env.New_Image }}'
+      - run: echo 'New image version is ${{ github.event.client_payload.img }}:${{ github.event.client_payload.sha }}'
 
