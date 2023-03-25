@@ -24,8 +24,8 @@ jobs:
       - run: echo 'branch ref name is ${{ github.ref_name }}'
 #       - run: echo 'env path is ${{ github.env }}'
       - run: echo 'filename from env is  ${{ env.filename }}'
-#       - run: ls ${{ github.workspace }}/dev
-      - run: echo 'the ls in echo is $(ls)'
+      - run: ls ${{ github.workspace }}/dev
+      - run: echo "the ls in echo is $(ls)"
       - run: sed -i 's/image.*/image:\ ${{ env.image }}/' ${{ env.filename }}
 #       - run: echo 'new file   $(cat ${{ env.filename }})'
       - name: push
