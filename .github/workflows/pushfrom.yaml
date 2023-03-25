@@ -16,5 +16,5 @@ jobs:
       - run: echo 'sha value in env is ${{ env.sha }}'
       - run: echo 'image name is ${{ github.event.client_payload.img }}'
       - run: echo 'Repo is ${{ github.event.client_payload.repo}}'
-      - run: echo 'New image version is ${{ github.event.client_payload.img }}:${{ github.event.client_payload.sha }}'
+      - run: echo 'New image version from env is  ${{ env.image}}:${{ env.sha }}'
 
