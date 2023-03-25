@@ -6,6 +6,7 @@ on:
 env:
  image: ${{ github.event.client_payload.img }}
  sha: ${{ github.event.client_payload.sha }}
+ filename: ${{github.workspace}}/README.md
  
 jobs:
   myEvent:
@@ -17,6 +18,6 @@ jobs:
       - run: echo 'image name is ${{ github.event.client_payload.img }}'
       - run: echo 'Repo is ${{ github.event.client_payload.repo}}'
       - run: echo 'New image version from env is  ${{ env.image}}:${{ env.sha }}'
-      - run: sed -i 's/image/image:${{ env.image}}:${{env.sha}}/' Readme.md
-      - run: cat Readme.md
+      - run: sed -i 's/image/image:${{ env.image}}:${{env.sha}}/' ${{ env.filename }}
+      - run: cat README.md
 
