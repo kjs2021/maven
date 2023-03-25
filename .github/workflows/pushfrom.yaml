@@ -6,7 +6,7 @@ on:
 env:
  image: ${{ github.event.client_payload.img }}
  sha: ${{ github.event.client_payload.sha }}
- New_Image: $image:$sha
+ New_Image: ${{ env.image }}:${{ env.sha }}
 jobs:
   myEvent:
     runs-on: ubuntu-latest
