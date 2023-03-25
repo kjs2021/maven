@@ -25,15 +25,10 @@ jobs:
 #       - run: echo 'env path is ${{ github.env }}'
       - run: echo 'filename from env is  ${{ env.filename }}'
       - run: ls ${{ github.workspace }}/dev
-      - run: echo "the ls in echo is $(ls)"
+      - run: echo "the ls in echo is \n$(ls {{ github.workspace }}/dev)"
       - run: sed -i 's/image.*/image:\ ${{ env.image }}/' ${{ env.filename }}
 #       - run: echo 'new file   $(cat ${{ env.filename }})'
       - name: push
         uses: github-actions-x/commit@v2.9
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          push-branch: ${{ github.ref_name }}
-          commit-message: 'publish'
-          force-add: true
-          files: ${{ env.filename }}
+        
         
