@@ -1,0 +1,25 @@
+name: workspaceinfo
+
+on:
+  push:
+    branches:
+    - github
+  workflow_dispatch:
+   
+env:
+#  image: ${{ github.event.client_payload.img }}
+#  sha: ${{ github.event.client_payload.sha }}
+ filename: ${{github.workspace}}/dev/deploy.yaml
+ 
+jobs:
+  myEvent:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        
+      - run: echo 'workspace value in  is ${{ github.worksapce }}'
+      - run: echo 'branch ref name is ${{ github.base_ref }}'
+      - run: echo 'env path is ${{ github.env }}'
+      - run: echo 'filename from env is  ${{ env.filename }}'
+#       - run: sed -i 's/image.*/image:${{ env.image}}:${{env.sha}}/' ${{ env.filename }}
+#       - run: cat README.md
