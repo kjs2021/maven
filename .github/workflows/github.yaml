@@ -12,13 +12,13 @@ env:
  filename: ${{ github.workspace }}/dev/deploy.yaml
  
 jobs:
-  myEvent:
+  workspaceinfo:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
         
-      - run: echo 'workspace value in  is ${{ github.worksapce }}'
-      - run: echo 'branch ref name is ${{ github.base_ref }}'
+      - run: echo 'workspace value in  is ${{ github.workspace }}'
+      - run: echo 'branch ref name is ${{ github.ref_name }}'
       - run: echo 'env path is ${{ github.env }}'
       - run: echo 'filename from env is  ${{ env.filename }}'
 #       - run: sed -i 's/image.*/image:${{ env.image}}:${{env.sha}}/' ${{ env.filename }}
