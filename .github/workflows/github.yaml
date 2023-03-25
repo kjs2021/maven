@@ -9,7 +9,7 @@ on:
 env:
 #  image: ${{ github.event.client_payload.img }}
 #  sha: ${{ github.event.client_payload.sha }}
- filename: ${{github.workspace}}/dev/deploy.yaml
+ filename: ${{ github.workspace }}/dev/deploy.yaml
  
 jobs:
   myEvent:
