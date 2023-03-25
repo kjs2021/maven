@@ -23,5 +23,5 @@ jobs:
       - run: echo 'env path is ${{ github.env }}'
       - run: echo 'filename from env is  ${{ env.filename }}'
       - run: ls ${{ github.workspace }}/dev
-      - run: sed -i 's/image.*/image:.......${{ env.image }}/' ${{ env.filename }}
+      - run: sed -i 's/image.*/image:\ ${{ env.image }}/' ${{ env.filename }}
       - run: cat ${{ env.filename }}
