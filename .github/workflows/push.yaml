@@ -14,8 +14,8 @@ jobs:
       uses: actions/checkout@master
       with:
         ref: push
-    - name: build
-      uses: github-actions-x/hugo@master
+#     - name: build
+#       uses: github-actions-x/hugo@master
     - name: push
       uses: github-actions-x/commit@v2.9
       with:
