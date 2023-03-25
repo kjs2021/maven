@@ -10,19 +10,16 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - name: checkout
-      uses: actions/checkout@master
+    - uses: actions/checkout@master
       with:
+        persist-credentials: false 
+        fetch-depth: 0 
         ref: push
-    - name: creat file
-      run:  touch ${{ github.workspace }}/file1.yaml
-    - run: ls ${{ github.workspace }}
-    - name: push
-      uses: github-actions-x/commit@v2.9
+    - name: Create local changes
+      run: touch file1
+    - name: Commit & Push changes
+      uses: actions-js/push@master
       with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
-        push-branch: 'push'
-        commit-message: 'publish'
-        force-add: 'true'
-        files: file1.yaml
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        branch: push
         
