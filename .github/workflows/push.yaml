@@ -17,7 +17,7 @@ jobs:
         with:
          persist-credentials: false 
          fetch-depth: 0 
-         ref: push
+         ref: main
       - name: New Image
         id: job1
         
