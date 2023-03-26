@@ -19,23 +19,24 @@ jobs:
          fetch-depth: 0 
          ref: push
       - name: New Image
+        id: job1
         
         run: |
          echo 'New Image_name value will be -->  ${{ env.Image_name }}:${{ env.Image_version }}'
-         sed -i 's|image:\shttp/workflow-api:.*|image:\shttp/${{ env.Image_name }}:${{ env.Image_version }}|' ${{ env.Filename }}
+         sed -i 's|image: http/workflow-api:.*|image: http/${{ env.Image_name }}:${{ env.Image_version }}|' ${{ env.Filename }}
          echo 'Updated deploy.yaml'
          cat ${{ env.Filename}}
-#   job2:
-#     needs: new_image
-#     runs-on: ubuntu-latest 
-#     steps:
-#        - name: Commit & Push changes
+  job2:
+    needs: job1
+    runs-on: ubuntu-latest 
+    steps:
+       - name: Commit & Push changes
           
-#          uses: actions-js/push@master
-#          with:
-#           github_token: ${{ secrets.GITHUB_TOKEN }}
-#           branch: push
-#           message: 'auto commit from action'
+         uses: actions-js/push@master
+         with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: main
+          message: 'auto commit from action'
 
   
    
