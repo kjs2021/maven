@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: http/workflow-api:1.0.18
+        image: http/workflow-api:1.22.00
         ports:
         - containerPort: 80
 ---
