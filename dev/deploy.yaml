@@ -38,6 +38,6 @@ spec:
     spec:
       containers:
       - name: nginx2
-        image: http/save-api:1.0.87
+        image: http/save-api:1.0.18
         ports:
         - containerPort: 80
