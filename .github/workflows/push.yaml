@@ -31,12 +31,13 @@ jobs:
     runs-on: ubuntu-latest 
     steps:
        - name: Commit & Push changes
-          
-         uses: actions-js/push@master
-         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: main
-          message: 'auto commit from action'
+         run: |
+          cat ${{ env.Filename}}
+       -  uses: actions-js/push@master
+          with:
+           github_token: ${{ secrets.GITHUB_TOKEN }}
+           branch: main
+           message: 'auto commit from action'
 
   
    
