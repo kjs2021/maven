@@ -22,7 +22,7 @@ jobs:
         id: job1
         
         run: |
-         echo 'New Image_name value will be -->  ${{ env.Image_name }}:${{ env.Image_version }}'
+         echo 'Workflow trigger by Image_name  -->  ${{ env.Image_name }}:${{ env.Image_version }}'
          sed -i 's|image: http/${{ env.Image_name }}:.*|image: http/${{ env.Image_name }}:${{ env.Image_version }}|' ${{ env.Filename }}
          echo 'Updated deploy.yaml'
          cat ${{ env.Filename}}
@@ -34,7 +34,7 @@ jobs:
          with:
            github_token: ${{ secrets.GITHUB_TOKEN }}
            branch: main
-           message: 'auto commit from action'
+           message: 'Auto commit from github action'
 
   
    
