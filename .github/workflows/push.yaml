@@ -10,7 +10,7 @@ env:
  Filename: ${{ github.workspace }}/dev/deploy.yaml
 
 jobs:
-  job1:
+  Update_Image_version:
    runs-on: ubuntu-latest 
    steps:
       - uses: actions/checkout@v3
