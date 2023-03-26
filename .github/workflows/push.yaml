@@ -47,7 +47,7 @@ jobs:
    steps:
      - name: Commit & Push changes
        run: |
-          echo "newdeploy will be ${{needs.job1.outputs.Newdeploy}}
+          echo "newdeploy will be ${{ needs.job1.outputs.Newdeploy }}
   
  
 
