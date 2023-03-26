@@ -6,38 +6,51 @@ on:
     
 env:
  Image_name: ${{ github.event.client_payload.img }}
- Image _version: ${{ github.event.client_payload.Image_version }}
+ Image_version: ${{ github.event.client_payload.Image_version }}
  Filename: ${{ github.workspace }}/dev/deploy.yaml
 
 jobs:
   job1:
-   runs-on: ubuntu-latest 
+   runs-on: ubuntu-latest
+   outputs:
+      Newdeploy: ${{ steps.NewImage.outputs.Newdeploy}}
    steps:
-      - uses: actions/checkout@v3
+      - name: checkout code
+        uses: actions/checkout@v3
         with:
          persist-credentials: false 
          fetch-depth: 0 
-         ref: push
+         ref: main
       - name: New Image
+        id: NewImage
         
         run: |
-         echo 'New Image_name value will be -->  ${{ env.Image_name }}:{{ env.Image_version }}'
-         sed -i 's|image.*|image:http/${{ env.Image_name }}:${{ env.Image_version }}|' ${{ env.filename }}
+         echo 'Workflow trigger by Image_name  -->  ${{ env.Image_name }}:${{ env.Image_version }}'
+         sed -i 's|image: http/${{ env.Image_name }}:.*|image: http/${{ env.Image_name }}:${{ env.Image_version }}|' ${{ env.Filename }}
          echo 'Updated deploy.yaml'
          cat ${{ env.Filename}}
-#   job2:
-#     needs: new_image
-#     runs-on: ubuntu-latest 
-#     steps:
-#        - name: Commit & Push changes
-          
-#          uses: actions-js/push@master
-#          with:
-#           github_token: ${{ secrets.GITHUB_TOKEN }}
-#           branch: push
-#           message: 'auto commit from action'
-
+         run: echo "Newdeploy= cat ${{ env.Filename }} " >> "$GITHUB_OUTPUT"
   
+#       - name: Commit & Push changes
+#         run: |
+#           cat ${{ env.Filename}}
+#       -  uses: actions-js/push@master
+#          with:
+#            github_token: ${{ secrets.GITHUB_TOKEN }}
+#            branch: main
+#            message: 'Auto commit from github action'
+           
+     
+  job2:
+   runs-on: ubuntu-latest
+   needs: job1
+   steps:
+     - name: Commit & Push changes
+       run: |
+          echo "newdeploy will be ${{needs.job1.outputs.Newdeploy}}
+  
+ 
+
    
 
         
