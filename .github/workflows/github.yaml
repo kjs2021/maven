@@ -9,17 +9,33 @@ on:
 env:
 #  image: ${{ github.event.client_payload.img }}
 #  sha: ${{ github.event.client_payload.sha }}
- filename: ${{github.workspace}}/dev/deploy.yaml
+ filename: ${{ github.workspace }}/dev/deploy.yaml
+ dir: ${{ github.workspace }}
+ image: hello:1.0.9
  
 jobs:
-  myEvent:
+  workspaceinfo:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+        with:
+         ref: github
         
-      - run: echo 'workspace value in  is ${{ github.worksapce }}'
-      - run: echo 'branch ref name is ${{ github.base_ref }}'
-      - run: echo 'env path is ${{ github.env }}'
+#       - run: echo 'workspace value in  is ${{ github.workspace }}'
+      - run: echo 'branch ref name is ${{ github.ref_name }}'
+#       - run: echo 'env path is ${{ github.env }}'
       - run: echo 'filename from env is  ${{ env.filename }}'
-#       - run: sed -i 's/image.*/image:${{ env.image}}:${{env.sha}}/' ${{ env.filename }}
-#       - run: cat README.md
+      - run: ls ${{ github.workspace }}/dev
+      - run: echo "the ls in echo is   $(ls ${{ env.dir}})"
+      - run: sed -i 's/image.*/image:\ ${{ env.image }}/' ${{ env.filename }}
+      - run: echo "new file   $(cat ${{ env.filename }})"
+      - name: push
+        uses: github-actions-x/commit@v2.9
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          push-branch: 'github'
+          commit-message: 'publish'
+          force-add: 'true'
+          files: .
+          
+

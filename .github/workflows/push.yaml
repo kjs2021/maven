@@ -1,0 +1,43 @@
+name: Repository Dispatch
+on:
+  repository_dispatch:
+    types: workflow_api
+
+    
+env:
+ Image_name: ${{ github.event.client_payload.img }}
+ Image _version: ${{ github.event.client_payload.Image_version }}
+ Filename: ${{ github.workspace }}/dev/deploy.yaml
+
+jobs:
+  job1:
+   runs-on: ubuntu-latest 
+   steps:
+      - uses: actions/checkout@v3
+        with:
+         persist-credentials: false 
+         fetch-depth: 0 
+         ref: push
+      - name: New Image
+        
+        run: |
+         echo 'New Image_name value will be -->  ${{ env.Image_name }}:{{ env.Image_version }}'
+         sed -i 's|image.*|image:http/${{ env.Image_name }}:${{ env.Image_version }}|' ${{ env.filename }}
+         echo 'Updated deploy.yaml'
+         cat ${{ env.Filename}}
+#   job2:
+#     needs: new_image
+#     runs-on: ubuntu-latest 
+#     steps:
+#        - name: Commit & Push changes
+          
+#          uses: actions-js/push@master
+#          with:
+#           github_token: ${{ secrets.GITHUB_TOKEN }}
+#           branch: push
+#           message: 'auto commit from action'
+
+  
+   
+
+        
