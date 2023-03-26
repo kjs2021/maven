@@ -22,7 +22,7 @@ jobs:
         
         run: |
          echo 'New Image_name value will be -->  ${{ env.Image_name }}:${{ env.Image_version }}'
-         sed -i 's|image: http/workflow:.*|image: http/${{ env.Image_name }}:${{ env.Image_version }}|' ${{ env.Filename }}
+         sed -i 's|image:\shttp/workflow:.*|image:\shttp/${{ env.Image_name }}:${{ env.Image_version }}|' ${{ env.Filename }}
          echo 'Updated deploy.yaml'
          cat ${{ env.Filename}}
 #   job2:
