@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: http/workflow-api:1.0.9
+        image: hello
         ports:
         - containerPort: 80
 ---
@@ -38,6 +38,6 @@ spec:
     spec:
       containers:
       - name: nginx2
-        image: http/save-api:1.0.87
+        image: hello2
         ports:
         - containerPort: 80
