@@ -26,15 +26,12 @@ jobs:
          sed -i 's|image: http/workflow-api:.*|image: http/${{ env.Image_name }}:${{ env.Image_version }}|' ${{ env.Filename }}
          echo 'Updated deploy.yaml'
          cat ${{ env.Filename}}
-  job2:
-    needs: job1
-    runs-on: ubuntu-latest 
-    steps:
-       - name: Commit & Push changes
-         run: |
+  
+      - name: Commit & Push changes
+        run: |
           cat ${{ env.Filename}}
-       -  uses: actions-js/push@master
-          with:
+      -  uses: actions-js/push@master
+         with:
            github_token: ${{ secrets.GITHUB_TOKEN }}
            branch: main
            message: 'auto commit from action'
