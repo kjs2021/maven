@@ -6,7 +6,7 @@ on:
     
 env:
  Image_name: ${{ github.event.client_payload.img }}
- Image _version: ${{ github.event.client_payload.Image_version }}
+ Image_version: ${{ github.event.client_payload.Image_version }}
  Filename: ${{ github.workspace }}/dev/deploy.yaml
 
 jobs:
@@ -22,7 +22,7 @@ jobs:
         
         run: |
          echo 'New Image_name value will be -->  ${{ env.Image_name }}:{{ env.Image_version }}'
-         sed -i 's|image.*|image:http/${{ env.Image_name }}:${{ env.Image_version }}|' ${{ env.Filename }}
+         sed -i 's|image:http/workflow:.*|image:http/${{ env.Image_name }}:${{ env.Image_version }}|' ${{ env.Filename }}
          echo 'Updated deploy.yaml'
          cat ${{ env.Filename}}
 #   job2:
