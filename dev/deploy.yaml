@@ -16,6 +16,28 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: hello:1.0.9
+        image: http/workflow-api:1.0.9
+        ports:
+        - containerPort: 80
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx2-deployment
+  labels:
+    app: nginx2
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx2
+  template:
+    metadata:
+      labels:
+        app: nginx2
+    spec:
+      containers:
+      - name: nginx2
+        image: http/save-api:1.0.87
         ports:
         - containerPort: 80
