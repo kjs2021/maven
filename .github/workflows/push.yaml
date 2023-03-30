@@ -24,8 +24,8 @@ jobs:
         run: |
          echo 'Workflow trigger by Image_name  -->  ${{ env.Image_name }}:${{ env.Image_version }}'
          sed -i 's|image: http/${{ env.Image_name }}:.*|image: http/${{ env.Image_name }}:${{ env.Image_version }}|' ${{ env.Filename }}
-         echo 'Updated deploy.yaml'
-         cat ${{ env.Filename}}
+     #   echo 'Updated deploy.yaml'
+      #  cat ${{ env.Filename}}
   
       - name: Commit & Push changes
         run: |
