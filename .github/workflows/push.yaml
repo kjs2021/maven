@@ -8,7 +8,7 @@ env:
  Image_name: ${{ github.event.client_payload.img }}
  Image_version: ${{ github.event.client_payload.Image_version }}
  Filename: ${{ github.workspace }}/dev/deploy.yaml
- Event_type: ${{ github.event.event_type }}
+ Event_type: ${{ github.event.event-type }}
 
 jobs:
   Update_Image_version:
