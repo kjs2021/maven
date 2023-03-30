@@ -31,10 +31,10 @@ jobs:
       #  cat ${{ env.Filename}}
   
       - name: Commit & Push changes
-        run: |
-          cat ${{ env.Filename}}
-      -  uses: actions-js/push@master
-         with:
+#         run: |
+#           cat ${{ env.Filename}}
+        uses: actions-js/push@master
+        with:
            github_token: ${{ secrets.GITHUB_TOKEN }}
            branch: main
            message: 'Auto commit from github action'
