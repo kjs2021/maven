@@ -23,6 +23,8 @@ jobs:
         
         run: |
          echo 'Workflow trigger by Image_name  -->  ${{ env.Image_name }}:${{ env.Image_version }}'
+         echo 'Workflow trigger by event type  -->  ${{ github.event_type }}
+         echo 'Workflow trigger by event name  -->  ${{ github.event}}
          sed -i 's|image: http/${{ env.Image_name }}:.*|image: http/${{ env.Image_name }}:${{ env.Image_version }}|' ${{ env.Filename }}
      #   echo 'Updated deploy.yaml'
       #  cat ${{ env.Filename}}
