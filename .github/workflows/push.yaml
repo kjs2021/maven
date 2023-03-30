@@ -5,9 +5,10 @@ on:
 
     
 env:
- Image_name: ${{ github.event.client_payload.img }}
- Image_version: ${{ github.event.client_payload.Image_version }}
+ Image_name: ${{ github.event.client-payload.img }}
+ Image_version: ${{ github.event.client-payload.Image_version }}
  Filename: ${{ github.workspace }}/dev/deploy.yaml
+ Event_type: ${{ github.event.event-type }}
 
 jobs:
   Update_Image_version:
@@ -23,7 +24,7 @@ jobs:
         
         run: |
          echo 'Workflow trigger by Image_name  -->  ${{ env.Image_name }}:${{ env.Image_version }}'
-         echo 'Workflow trigger by event type  -->  ${{ github.event.event_type }}'
+         echo 'Workflow trigger by event type  -->  ${{ env.Event_type }}'
     
          sed -i 's|image: http/${{ env.Image_name }}:.*|image: http/${{ env.Image_name }}:${{ env.Image_version }}|' ${{ env.Filename }}
      #   echo 'Updated deploy.yaml'
