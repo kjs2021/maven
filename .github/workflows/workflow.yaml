@@ -5,8 +5,8 @@ on:
   push:
     branches:
     - test-branch
-#     paths:
-#     - MyFirstFolder
+    paths:
+    - hello
   workflow_dispatch:
     
 jobs:
