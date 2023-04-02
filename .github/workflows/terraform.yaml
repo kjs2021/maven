@@ -4,8 +4,8 @@ on:
   push:
     branches:
     - test-branch
-#     paths:
-#     - Function
+    paths:
+    - Function
   workflow_dispatch:
 
     
