@@ -1,0 +1,14 @@
+name: Workflow example
+
+on:
+
+  push:
+    branches:
+    - test-branch
+    paths:
+    - MyFirstFolder
+    
+jobs:
+ runs-on: Ubuntu-latest
+ - run: |
+  echo "hello"
