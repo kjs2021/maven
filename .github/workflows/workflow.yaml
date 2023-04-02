@@ -6,7 +6,7 @@ on:
     branches:
     - test-branch
     paths:
-    - hello
+    - MyFirstFolder/*
   workflow_dispatch:
     
 jobs:
