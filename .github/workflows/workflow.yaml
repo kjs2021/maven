@@ -9,6 +9,9 @@ on:
     - MyFirstFolder
     
 jobs:
- runs-on: Ubuntu-latest
- - run: |
-  echo "hello"
+ trigger:
+  runs-on: ubuntu-latest
+  steps:
+      - name: updated terrafrom
+        run: |
+         echo  "New Image will be  terraform"
