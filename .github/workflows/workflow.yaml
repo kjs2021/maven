@@ -30,4 +30,4 @@ jobs:
           OUTPUT1: ${{needs.job1.outputs.Function1}}
     steps:        
       - run: |
-         echo: ${{ env.OUTPUT1 }}
+         echo: "${{ env.OUTPUT1 }}"
