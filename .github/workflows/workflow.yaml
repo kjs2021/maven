@@ -26,3 +26,5 @@ jobs:
     steps:        
       - run: |
          echo 'terraform apply  - replace ="${{ env.FunctionName }}"'
+         echo '${{ github.actor_id }}'
+         echo ' ${{ github.actor }}' 
