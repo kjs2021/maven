@@ -34,7 +34,7 @@ jobs:
          fetch-depth: 0 
          ref: test-branch
     
-    - name: pull-test
+    - name: test
       id: pull
       uses: repo-sync/pull-request@v2
       with:
