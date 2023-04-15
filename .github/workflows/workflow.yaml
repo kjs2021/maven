@@ -23,27 +23,31 @@ jobs:
         run: |
          echo  "${{ env.FunctionName }} Function  will be updated by terraform"
 
- pull-request:
+ pull-test:
     runs-on: ubuntu-latest
-    
+    outputs: 
+      pr_number: ${{ steps.pull.outputs.pr_number}}
     steps:
     - uses: actions/checkout@master
       with:
          persist-credentials: false 
          fetch-depth: 0 
          ref: test-branch
-    - name: pull-request
+    
+    - name: pull-test
       id: pull
       uses: repo-sync/pull-request@v2
       with:
         destination_branch: "main"
+    - name: output-number
+      run: echo ${{steps.open-pr.outputs.pr_number}}
       
  job-apply:
-    runs-on: ubuntu-latest
-    if:  success() 
-    needs: pull-request
-    steps:        
-      - run: |
+  runs-on:  ubuntu-latest
+  if: pull-test.outputs.pr_number=
+  needs: pull-test
+  steps:        
+   - run: |
          echo 'terraform apply  - replace ="module.cloud_function.${{ env.FunctionName }}.cloudfunction2"'
          echo "The name of the pusher: ${{ github.event.pusher.name }}"
          echo "The email of the pusher: ${{ github.event.pusher.email }}"
