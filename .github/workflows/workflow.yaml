@@ -35,12 +35,12 @@ jobs:
          ref: test-branch
     
     - name: test
-      id: pull
+      id: pullest
       uses: repo-sync/pull-request@v2
       with:
         destination_branch: "main"
     - name: output-number
-      run: echo ${{steps.open-pr.outputs.pr_number}}
+      run: echo ${{steps.pullest.outputs.pr_number}}
       
  job-apply:
   runs-on:  ubuntu-latest
