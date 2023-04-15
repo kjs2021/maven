@@ -27,6 +27,11 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
+    - uses: actions/checkout@master
+      with:
+         persist-credentials: false 
+         fetch-depth: 0 
+         ref: test-branch
     - name: pull-request
       id: pull
       uses: repo-sync/pull-request@v2
