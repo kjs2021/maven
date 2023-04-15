@@ -44,7 +44,7 @@ jobs:
       
  job-apply:
   runs-on:  ubuntu-latest
-  if: pull-test.outputs.pr_number=
+#   if: pull-test.outputs.pr_number=
   needs: pull-test
   steps:        
    - run: |
