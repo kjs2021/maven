@@ -1,0 +1,17 @@
+name: terraform workflow
+
+on:
+  push:
+    branches:
+    - test-branch
+    paths:
+    - Function
+  workflow_dispatch:
+
+    
+jobs:
+  Terraform:
+    runs-on: ubuntu-latest
+    steps:
+    - run: |
+       echo " running terraform"
