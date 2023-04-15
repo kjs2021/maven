@@ -18,15 +18,25 @@ concurrency:
 jobs:
  job1:
   runs-on: ubuntu-latest
-
   steps:
       - name: updated terrafrom
         run: |
          echo  "${{ env.FunctionName }} Function  will be updated by terraform"
-      
- job2:
+
+ pull-request:
     runs-on: ubuntu-latest
-    needs: job1
+    
+    steps:
+    - name: pull-request
+      id: pull
+      uses: repo-sync/pull-request@v2
+      with:
+        destination_branch: "main"
+      
+ job-apply:
+    runs-on: ubuntu-latest
+    if:  success() 
+    needs: pull-request
     steps:        
       - run: |
          echo 'terraform apply  - replace ="module.cloud_function.${{ env.FunctionName }}.cloudfunction2"'
