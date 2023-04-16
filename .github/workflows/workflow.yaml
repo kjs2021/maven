@@ -39,7 +39,7 @@ jobs:
       uses: repo-sync/pull-request@v2
       with:
         destination_branch: "main"
-        pr_title: "${{ env.FunctionName }}"
+        pr_title: "Pulling ${{ github.ref }} into main"
         pr_label: "${{ env.FunctionName }}"
         pr_reviewer: "wei,worker"                      
         pr_assignee: "wei,worker" 
