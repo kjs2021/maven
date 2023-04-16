@@ -41,8 +41,8 @@ jobs:
         destination_branch: "main"
         pr_title: "Pulling ${{ github.ref }} into main"
         pr_label: "${{ env.FunctionName }}"
-        pr_reviewer: "wei,worker"                      
-        pr_assignee: "wei,worker" 
+        pr_reviewer: "kjs2021"                      
+        pr_assignee: "kjs2021" 
         pr_body: |                                       
           :crown: *the pr url ${{ steps.pullest.outputs.pr_url }}*
 
