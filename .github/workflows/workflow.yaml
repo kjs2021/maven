@@ -45,6 +45,10 @@ jobs:
         pr_assignee: "kjs2021" 
         pr_body: |                                       
           :crown: *${{ env.FunctionName }} will be redeployed*
+          
+          After reviewing the terraform plan job ,Please  write  only funtion name as commit msg ,required by terraform apply command--->
+          
+          * ${{ env.FunctionName }} *
 
     - name: output-number
       run: |
