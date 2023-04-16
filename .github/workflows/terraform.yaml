@@ -9,7 +9,7 @@ on:
     
   pull_request:
    types:
-     closed
+     synchronize
   workflow_dispatch:
 env:
   FunctionName: ${{ github.event.head_commit.message }}
