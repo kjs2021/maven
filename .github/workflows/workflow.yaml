@@ -16,7 +16,7 @@ concurrency:
   cancel-in-progress: true
  
 jobs:
- job1:
+ terraform-plan:
   runs-on: ubuntu-latest
   steps:
       - name: updated terrafrom
