@@ -41,12 +41,18 @@ jobs:
         destination_branch: "main"
         pr_title: "${{ env.FunctionName }}"
         pr_label: "${{ env.FunctionName }}"
+        pr_reviewer: "wei,worker"                      
+        pr_assignee: "wei,worker" 
+        pr_body: |                                       
+          :crown: *the pr url ${{steps.pullest.outputs.pr_url}}*
+
     - name: output-number
       run: |
        echo "the prnumberis ${{ steps.pullest.outputs.pr_number }}"
        echo "the functiontitile nameis ${{ env.FunctionName }}"
        echo "the functionlabel nameis ${{ env.FunctionName }}"
-
+       echo "the pr url ${{steps.pullest.outputs.pr_url}}"
+     
 
       
  job-apply:
@@ -58,6 +64,7 @@ jobs:
          echo 'terraform apply  - replace ="module.cloud_function.${{ env.FunctionName }}.cloudfunction2"'
          echo "The name of the pusher: ${{ github.event.pusher.name }}"
          echo "The email of the pusher: ${{ github.event.pusher.email }}"
-         echo "${{ github.actor_id }}"
-         echo "${{ github.actor }}" 
+         echo "actor-id: ${{ github.actor_id }}"
+         echo "actorname: ${{ github.actor }}" 
+         echo "the pr url ${{steps.pullest.outputs.pr_url}}"
         
