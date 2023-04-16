@@ -42,7 +42,9 @@ jobs:
         pr_title: ${{ env.FunctionName }}
         pr_label: ${{ env.FunctionName }}
     - name: output-number
-      run: echo ${{steps.pullest.outputs.pr_number}}
+      run: |
+       echo ${{steps.pullest.outputs.pr_number}}
+       echo " the pr label is ${{ pr_label }}"
       
  job-apply:
   runs-on:  ubuntu-latest
@@ -55,4 +57,4 @@ jobs:
          echo "The email of the pusher: ${{ github.event.pusher.email }}"
          echo "${{ github.actor_id }}"
          echo "${{ github.actor }}" 
-         echo " the pr label is ${{ pr_label }}
+         echo " the pr label is ${{ pr_label }}"
