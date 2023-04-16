@@ -39,7 +39,7 @@ jobs:
       uses: repo-sync/pull-request@v2
       with:
         destination_branch: "main"
-        pr_title: "hello"
+        pr_title: ${{ env.FunctionName }}
     - name: output-number
       run: echo "the prnumberis ${{ steps.pullest.outputs.pr_number }}"
 
