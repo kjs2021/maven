@@ -5,7 +5,7 @@ on:
     branches:
     - main
     paths:
-    - Function
+    - Function/*
   workflow_dispatch:
 env:
   FunctionName: ${{ github.event.head_commit.message }}
