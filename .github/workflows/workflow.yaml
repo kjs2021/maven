@@ -44,7 +44,7 @@ jobs:
         pr_reviewer: "kjs2021"                      
         pr_assignee: "kjs2021" 
         pr_body: |                                       
-          :crown: *${{ env.FunctionName }} will be redeployed*
+          :crown: *${{ env.FunctionName }} will be redeployed./n After reviewing the terraform plan job ,only one commit msg should be wriiten with function name--- ${{ env.FunctionName }} *
 
     - name: output-number
       run: |
