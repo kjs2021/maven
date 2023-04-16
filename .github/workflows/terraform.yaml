@@ -3,7 +3,7 @@ name: terraform workflow
 on:
   push:
     branches:
-    - test-branch
+    - main
     paths:
     - Function
   workflow_dispatch:
