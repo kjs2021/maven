@@ -1,15 +1,15 @@
 name: terraform workflow
 
 on:
-#   push:
-#     branches:
-#     - main
-#     paths:
-#     - Function/*
+  push:
+    branches:
+    - main
+    paths:
+    - Function/*
     
-  pull_request:
-   types:
-     synchronize
+#   pull_request:
+#    types:
+#      synchronize
   workflow_dispatch:
 env:
   FunctionName: ${{ github.event.head_commit.message }}
