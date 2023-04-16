@@ -3,10 +3,12 @@ name: terraform workflow
 on:
   push:
     branches:
-    - test-branch
+    - main
     paths:
-    - Function
+    - Function/*
   workflow_dispatch:
+env:
+  FunctionName: ${{ github.event.head_commit.message }}
 
     
 jobs:
@@ -14,4 +16,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - run: |
-       echo " running terraform"
+       echo " running terraform for function ${{ env.FunctionName }}"
