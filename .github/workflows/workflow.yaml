@@ -39,9 +39,11 @@ jobs:
       uses: repo-sync/pull-request@v2
       with:
         destination_branch: "main"
-        pr_title: ${{ env.FunctionName }}
+        pr_title: "${{ env.FunctionName }}"
     - name: output-number
-      run: echo "the prnumberis ${{ steps.pullest.outputs.pr_number }}"
+      run: |
+       echo "the prnumberis ${{ steps.pullest.outputs.pr_number }}"
+       echo "the function nameis ${{ env.FunctionName }}"
 
       
  job-apply:
