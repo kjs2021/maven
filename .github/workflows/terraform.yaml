@@ -19,5 +19,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - run: |
-       # echo " running terraform for function ${{ env.FunctionName }}"
-       echo " running terraform Title for function ${{ env.Title }}"
+     
+        echo " running terraform Title for function ${{ env.Title }}"
