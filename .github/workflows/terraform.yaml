@@ -7,8 +7,11 @@ on:
     paths:
     - Function/*
   workflow_dispatch:
+
+ 
 env:
   FunctionName: ${{ github.event.head_commit.message }}
+  Title: ${{ github.event.pull_request.title }}
 
     
 jobs:
@@ -16,4 +19,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - run: |
-       echo " running terraform for function ${{ env.FunctionName }}"
+     
+        echo " running terraform Title for function ${{ env.FunctionName }}"
