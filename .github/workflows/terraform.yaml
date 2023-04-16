@@ -11,7 +11,7 @@ on:
  
 env:
   FunctionName: ${{ github.event.head_commit.message }}
-  Title: ${{ github.event.pull_request.title }}
+#   Title: ${{ github.event.pull_request.title }}
 
     
 jobs:
@@ -20,9 +20,9 @@ jobs:
     steps:
     - run: |
        - run: |
-         echo 'terraform apply  - replace ="module.cloud_function.${{ env.FunctionName }}.cloudfunction2"'
+         echo `terraform apply  - replace ="module.cloud_function.${{ env.FunctionName }}.cloudfunction2"`
          echo "The name of the pusher: ${{ github.event.pusher.name }}"
          echo "The email of the pusher: ${{ github.event.pusher.email }}"
          echo "actor-id: ${{ github.actor_id }}"
          echo "actorname: ${{ github.actor }}" 
-         echo " running terraform Title for function ${{ env.Title }}"
+      #   echo " running terraform Title for function ${{ env.Title }}"
