@@ -39,12 +39,12 @@ jobs:
       uses: repo-sync/pull-request@v2
       with:
         destination_branch: "main"
-        pr_title: "Pulling ${{ github.ref }} into main"
+        pr_title:  "Pulling ${{ github.ref }} into main"      
         pr_label: "${{ env.FunctionName }}"
         pr_reviewer: "kjs2021"                      
         pr_assignee: "kjs2021" 
         pr_body: |                                       
-          :crown: *the pr url ${{ steps.pullest.outputs.pr_url }}*
+          :crown: *${{ env.FunctionName }} will be redeployed*
 
     - name: output-number
       run: |
@@ -52,8 +52,7 @@ jobs:
        echo "the functiontitile nameis ${{ env.FunctionName }}"
        echo "the functionlabel nameis ${{ env.FunctionName }}"
        echo "the pr url ${{ steps.pullest.outputs.pr_url }}"
-     
-
+  
       
  job-apply:
   runs-on:  ubuntu-latest
@@ -67,4 +66,5 @@ jobs:
          echo "actor-id: ${{ github.actor_id }}"
          echo "actorname: ${{ github.actor }}" 
          echo "the pr url ${{ steps.pullest.outputs.pr_url }}"
+
         
