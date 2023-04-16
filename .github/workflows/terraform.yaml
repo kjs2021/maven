@@ -19,7 +19,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - run: |
-       - run: |
          echo `terraform apply  - replace ="module.cloud_function.${{ env.FunctionName }}.cloudfunction2"`
          echo "The name of the pusher: ${{ github.event.pusher.name }}"
          echo "The email of the pusher: ${{ github.event.pusher.email }}"
