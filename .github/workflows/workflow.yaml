@@ -16,7 +16,7 @@ concurrency:
   cancel-in-progress: true
  
 jobs:
- job1:
+ terraform-plan:
   runs-on: ubuntu-latest
   steps:
       - name: updated terrafrom
@@ -39,8 +39,8 @@ jobs:
       uses: repo-sync/pull-request@v2
       with:
         destination_branch: "main"
-        pr_title:  "Pulling ${{ github.ref }} into main"      
-        pr_label: "${{ env.FunctionName }}"
+        pr_title:  "${{ env.FunctionName }}"      
+#         pr_label: "${{ env.FunctionName }}"
         pr_reviewer: "kjs2021"                      
         pr_assignee: "kjs2021" 
         pr_body: |                                       
