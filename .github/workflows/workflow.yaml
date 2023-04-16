@@ -40,10 +40,13 @@ jobs:
       with:
         destination_branch: "main"
         pr_title: "${{ env.FunctionName }}"
+        pr_label: "${{ env.FunctionName }}"
     - name: output-number
       run: |
        echo "the prnumberis ${{ steps.pullest.outputs.pr_number }}"
-       echo "the function nameis ${{ env.FunctionName }}"
+       echo "the functiontitile nameis ${{ env.FunctionName }}"
+       echo "the functionlabel nameis ${{ env.FunctionName }}"
+
 
       
  job-apply:
@@ -57,4 +60,4 @@ jobs:
          echo "The email of the pusher: ${{ github.event.pusher.email }}"
          echo "${{ github.actor_id }}"
          echo "${{ github.actor }}" 
-         echo " the pr label is ${{ pr_label }}"
+        
