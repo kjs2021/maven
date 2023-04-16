@@ -44,14 +44,14 @@ jobs:
         pr_reviewer: "wei,worker"                      
         pr_assignee: "wei,worker" 
         pr_body: |                                       
-          :crown: *the pr url ${{steps.pullest.outputs.pr_url}}*
+          :crown: *the pr url ${{ steps.pullest.outputs.pr_url }}*
 
     - name: output-number
       run: |
        echo "the prnumberis ${{ steps.pullest.outputs.pr_number }}"
        echo "the functiontitile nameis ${{ env.FunctionName }}"
        echo "the functionlabel nameis ${{ env.FunctionName }}"
-       echo "the pr url ${{steps.pullest.outputs.pr_url}}"
+       echo "the pr url ${{ steps.pullest.outputs.pr_url }}"
      
 
       
@@ -66,5 +66,5 @@ jobs:
          echo "The email of the pusher: ${{ github.event.pusher.email }}"
          echo "actor-id: ${{ github.actor_id }}"
          echo "actorname: ${{ github.actor }}" 
-         echo "the pr url ${{steps.pullest.outputs.pr_url}}"
+         echo "the pr url ${{ steps.pullest.outputs.pr_url }}"
         
