@@ -3,9 +3,9 @@ name: terraform workflow
 on:
   push:
     branches:
-    - main
+     - main
     paths:
-    - Function/*
+     - Function/*
     
 #   pull_request:
 #    types:
