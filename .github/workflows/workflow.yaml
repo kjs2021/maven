@@ -10,10 +10,10 @@ on:
   
 env:
   FunctionName: ${{ github.event.head_commit.message }}
-concurrency:
-  #group: ${{ github.head_ref || github.run_id }}
-  group: terraform
-  cancel-in-progress: false
+# concurrency:
+#   group: ${{ github.head_ref || github.run_id }}
+#   group: terraform
+#   cancel-in-progress: false
  
 jobs:
  terraform-plan:
