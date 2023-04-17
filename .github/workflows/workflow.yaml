@@ -1,11 +1,13 @@
 name: Workflow example
 
 on:
-  push:
+  pull_request:
+    types:
+      - opened
     branches:
-    - smart*
+      - 'smart/**'
     paths:
-    - Function/*
+      - 'Function/**'
   workflow_dispatch:
   
 env:
