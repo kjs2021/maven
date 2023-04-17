@@ -3,7 +3,7 @@ name: Workflow example
 on:
   push:
     branches:
-    - test-branch
+    - smart*
     paths:
     - Function/*
   workflow_dispatch:
