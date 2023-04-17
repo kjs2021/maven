@@ -36,48 +36,48 @@ jobs:
          fetch-depth: 0 
          ref: smart*
          
-    - name: Create Pull Request
-      id: cpr
-      uses: peter-evans/create-pull-request@v5
-      with:
-#           token: ${{ secrets.PAT }}
-          commit-message: ${{ env.FunctionName }} 
-          committer: GitHub <noreply@github.com>
-          author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
-          signoff: false
-          branch: smart.${{ env.FunctionName }}
-          base: main
-          delete-branch: true
-          title: '${{ env.FunctionName }}'
-          body: |
-            Update report
-            
-          labels: |
-            report
-            automated pr
-          assignees: kjs2021
-          reviewers: kjs2021
-          team-reviewers: |
-            developers
-            qa-team
-          milestone: 1
-          draft: false
-    
-#     - name: test
-#       id: pullest
-#       uses: repo-sync/pull-request@v2
+#     - name: Create Pull Request
+#       id: cpr
+#       uses: peter-evans/create-pull-request@v5
 #       with:
-#         destination_branch: "main"
-#         pr_title:  "${{ env.FunctionName }}"      
-# #         pr_label: "${{ env.FunctionName }}"
-#         pr_reviewer: "kjs2021"                      
-#         pr_assignee: "kjs2021" 
-#         pr_body: |                                       
-#           :crown: *${{ env.FunctionName }} will be redeployed*
+# #           token: ${{ secrets.PAT }}
+#           commit-message: ${{ env.FunctionName }} 
+#           committer: GitHub <noreply@github.com>
+#           author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
+#           signoff: false
+#           branch: smart.${{ env.FunctionName }}
+#           base: main
+#           delete-branch: true
+#           title: '${{ env.FunctionName }}'
+#           body: |
+#             Update report
+            
+#           labels: |
+#             report
+#             automated pr
+#           assignees: kjs2021
+#           reviewers: kjs2021
+#           team-reviewers: |
+#             developers
+#             qa-team
+#           milestone: 1
+#           draft: false
+    
+    - name: test
+      id: pullest
+      uses: repo-sync/pull-request@v2
+      with:
+        destination_branch: "main"
+        pr_title:  "${{ env.FunctionName }}"      
+#         pr_label: "${{ env.FunctionName }}"
+        pr_reviewer: "kjs2021"                      
+        pr_assignee: "kjs2021" 
+        pr_body: |                                       
+          :crown: *${{ env.FunctionName }} will be redeployed*
           
-#           After reviewing the terraform plan job ,Please  write  only funtion name as commit msg ,required by terraform apply command--->
+          After reviewing the terraform plan job ,Please  write  only funtion name as commit msg ,required by terraform apply command--->
           
-#           * ${{ env.FunctionName }} *
+          * ${{ env.FunctionName }} *
 
       
  job-apply:
