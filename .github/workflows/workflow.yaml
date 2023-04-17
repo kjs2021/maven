@@ -12,6 +12,7 @@ on:
   
 env:
   FunctionName: ${{ github.event.head_commit.message }}
+  
 # concurrency:
 #   group: ${{ github.head_ref || github.run_id }}
 #   group: terraform
@@ -44,7 +45,7 @@ jobs:
           committer: GitHub <noreply@github.com>
           author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
           signoff: false
-          branch: smart*
+          branch: smart.${{ env.FunctionName }}
           base: main
           delete-branch: true
           title: '${{ env.FunctionName }}'
