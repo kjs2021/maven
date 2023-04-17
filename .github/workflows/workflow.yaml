@@ -43,6 +43,7 @@ jobs:
           author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
           signoff: false
           branch: smart*
+          base: main
           delete-branch: true
           title: '${{ env.FunctionName }}'
           body: |
