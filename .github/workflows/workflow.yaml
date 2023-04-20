@@ -1,22 +1,19 @@
 name: Workflow example
 
 on:
-  pull_request_target:
-    types:
-      - opened
+  push:
     branches:
-      - smart.*
+    - test-branch
     paths:
-      - 'Function/**'
+    - Function/*
   workflow_dispatch:
   
 env:
   FunctionName: ${{ github.event.head_commit.message }}
-  
-# concurrency:
-#   group: ${{ github.head_ref || github.run_id }}
-#   group: terraform
-#   cancel-in-progress: false
+concurrency:
+  #group: ${{ github.head_ref || github.run_id }}
+  group: terraform
+  cancel-in-progress: false
  
 jobs:
  terraform-plan:
@@ -25,43 +22,16 @@ jobs:
       - name: updated terrafrom
         run: |
          echo  "${{ env.FunctionName }} Function  will be updated by terraform"
-
  pull-test:
     runs-on: ubuntu-latest
-    
+    outputs: 
+      pr_number: ${{ steps.pullest.outputs.pr_number }}
     steps:
     - uses: actions/checkout@master
       with:
          persist-credentials: false 
          fetch-depth: 0 
-         ref: smart*
-         
-#     - name: Create Pull Request
-#       id: cpr
-#       uses: peter-evans/create-pull-request@v5
-#       with:
-# #           token: ${{ secrets.PAT }}
-#           commit-message: ${{ env.FunctionName }} 
-#           committer: GitHub <noreply@github.com>
-#           author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
-#           signoff: false
-#           branch: smart.${{ env.FunctionName }}
-#           base: main
-#           delete-branch: true
-#           title: '${{ env.FunctionName }}'
-#           body: |
-#             Update report
-            
-#           labels: |
-#             report
-#             automated pr
-#           assignees: kjs2021
-#           reviewers: kjs2021
-#           team-reviewers: |
-#             developers
-#             qa-team
-#           milestone: 1
-#           draft: false
+         ref: test-branch
     
     - name: test
       id: pullest
@@ -78,7 +48,13 @@ jobs:
           After reviewing the terraform plan job ,Please  write  only funtion name as commit msg ,required by terraform apply command--->
           
           * ${{ env.FunctionName }} *
-
+    - name: output-number
+      run: |
+       echo "the prnumberis ${{ steps.pullest.outputs.pr_number }}"
+       echo "the functiontitile nameis ${{ env.FunctionName }}"
+       echo "the functionlabel nameis ${{ env.FunctionName }}"
+       echo "the pr url ${{ steps.pullest.outputs.pr_url }}"
+  
       
  job-apply:
   runs-on:  ubuntu-latest
@@ -92,5 +68,3 @@ jobs:
          echo "actor-id: ${{ github.actor_id }}"
          echo "actorname: ${{ github.actor }}" 
          echo "the pr url ${{ steps.pullest.outputs.pr_url }}"
-
-        
