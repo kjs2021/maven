@@ -39,7 +39,7 @@ jobs:
       with:
         destination_branch: "main"
         pr_title:  "${{ env.FunctionName }}"      
-#         pr_label: "${{ env.FunctionName }}"
+        pr_label: "${{ env.FunctionName }}"
         pr_reviewer: "kjs2021"                      
         pr_assignee: "kjs2021" 
         pr_body: |                                       
