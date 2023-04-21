@@ -9,9 +9,9 @@ on:
   workflow_dispatch:
 
 env:
-  FunctionName: ${{ github.event.commits[0].message }}
+  FunctionName: ${{ github.event.commits[1].message }}
   FunctionName2: ${{ github.event.head_commit.message }}
-#   Title: ${{ github.event.pull_request.title }}
+
 concurrency:
   #group: ${{ github.head_ref || github.run_id }}
   group: terraform
