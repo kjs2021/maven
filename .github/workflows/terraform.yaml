@@ -9,7 +9,8 @@ on:
   workflow_dispatch:
 
 env:
-  FunctionName: ${{ github.event.head_commit.message }}
+  FunctionName: ${{ github.event.commits[0].message }}
+  FunctionName2: ${{ github.event.head_commit.message }}
 #   Title: ${{ github.event.pull_request.title }}
 concurrency:
   #group: ${{ github.head_ref || github.run_id }}
@@ -24,6 +25,7 @@ jobs:
     - name: teraaform-apply
       run: |
          echo 'terraform apply  - replace ="module.cloud_function.${{ env.FunctionName }}.cloudfunction2"'
+         echo 'terraform apply  - replace ="module.cloud_function.${{ env.FunctionName2 }}.cloudfunction2"'
          echo "The name of the pusher: ${{ github.event.pusher.name }}"
          echo "The email of the pusher: ${{ github.event.pusher.email }}"
          echo "${{toJSON(github.event)}}"
