@@ -1,0 +1,70 @@
+name: Workflow example
+
+on:
+  push:
+    branches:
+    - test-branch-2
+    paths:
+    - Function/*
+  workflow_dispatch:
+  
+env:
+  FunctionName: ${{ github.event.head_commit.message }}
+concurrency:
+  #group: ${{ github.head_ref || github.run_id }}
+  group: terraform
+  cancel-in-progress: false
+ 
+jobs:
+ terraform-plan:
+  runs-on: ubuntu-latest
+  steps:
+      - name: updated terrafrom
+        run: |
+         echo  "${{ env.FunctionName }} Function  will be updated by terraform"
+ pull-test:
+    runs-on: ubuntu-latest
+    outputs: 
+      pr_number: ${{ steps.pullest.outputs.pr_number }}
+    steps:
+    - uses: actions/checkout@master
+      with:
+         persist-credentials: false 
+         fetch-depth: 0 
+         ref: test-branch-2
+    
+    - name: test
+      id: pullest
+      uses: repo-sync/pull-request@v2
+      with:
+        destination_branch: "main"
+        pr_title:  "${{ env.FunctionName }}"      
+        pr_label: "${{ env.FunctionName }}"
+        pr_reviewer: "kjs2021"                      
+        pr_assignee: "kjs2021" 
+        pr_body: |                                       
+          :crown: *${{ env.FunctionName }} will be redeployed*
+          
+          After reviewing the terraform plan job ,Please  write  only funtion name as commit msg ,required by terraform apply command--->
+          
+          * ${{ env.FunctionName }} *
+    - name: output-number
+      run: |
+       echo "the prnumberis ${{ steps.pullest.outputs.pr_number }}"
+       echo "the functiontitile nameis ${{ env.FunctionName }}"
+       echo "the functionlabel nameis ${{ env.FunctionName }}"
+       echo "the pr url ${{ steps.pullest.outputs.pr_url }}"
+  
+      
+ job-apply:
+  runs-on:  ubuntu-latest
+#   if: pull-test.outputs.pr_number=
+  needs: pull-test
+  steps:        
+   - run: |
+         echo 'terraform apply  - replace ="module.cloud_function.${{ env.FunctionName }}.cloudfunction2"'
+         echo "The name of the pusher: ${{ github.event.pusher.name }}"
+         echo "The email of the pusher: ${{ github.event.pusher.email }}"
+         echo "actor-id: ${{ github.actor_id }}"
+         echo "actorname: ${{ github.actor }}" 
+         echo "the pr url ${{ steps.pullest.outputs.pr_url }}"
