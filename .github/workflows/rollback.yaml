@@ -78,6 +78,8 @@ jobs:
          echo " current release ${{ steps.node_release1.outputs.release_id }}"
         
   Rollback2:
+    needs:  [Rollback]
+    if: ${{ success() }}
     runs-on: ubuntu-latest
     environment: rollback
     steps:
