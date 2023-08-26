@@ -1,0 +1,37 @@
+name: Roll-back
+on:
+  workflow_dispatch:
+    # inputs:
+    #   revision:
+    #     description: 'The revision to rollback to'
+    #     required: true
+
+    #   branch:
+    #     description: 'The branch that the rollback affects'
+    #     required: true
+env:
+ Branch: ${{ github.event.inputs.Branch }}
+ Revision: ${{ github.event.inputs.roll-revision }}
+
+jobs:
+  Rollback:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+           ref: roll-back
+           fetch-depth: 0
+
+      - name: echo
+         run:|
+         echo " branchname is ${{ env.Branch }}
+         echo " revision is ${{ env.Revision }}
+        
+        
+
+      # - name: Rolls back to a certain version
+      #   uses: fivebluepetals/rollback-action@v1.0
+      #   with:
+      #     branch: ${{ github.event.inputs.branch }}
+      #     revision: ${{ github.event.inputs.revision }}
