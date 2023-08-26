@@ -32,19 +32,28 @@ jobs:
          echo " branchname is ${{ env.Branch }}"
          echo " revision is ${{ env.Revision }}"
 
-      - name: Get Current Release
-        id: get_current_release
-        uses: joutvhu/get-release@v1
+      # - name: Get Current Release
+      #   id: get_current_release
+      #   uses: joutvhu/get-release@v1
+      #   with:
+      #     debug: true
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Get latest release 
+        uses: rez0n/actions-github-release@main
+        id: node_release
         with:
-          debug: true
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+         token: ${{ secrets.GITHUB_TOKEN }}
+         repository: "kjs2021/maven"
+         type: "latest"
+
 
 
       - name: echo tag
         run: 
-         echo " current tag is ${{ steps.get_current_release.outputs.tag_name }}"
-         echo " current release ${{ steps.get_current_release.outputs.id }}"
+         echo " current tag is ${{ steps.node_release.outputs.release }}"
+         echo " current release ${{ steps.node_release.outputs.release_id }}"
         
 
       # - name: Rolls back to a certain version
