@@ -56,8 +56,8 @@ jobs:
          echo " current release ${{ steps.node_release.outputs.release_id }}"
         
 
-      # - name: Rolls back to a certain version
-      #   uses: fivebluepetals/rollback-action@v1.0
-      #   with:
-      #     branch: ${{ github.event.inputs.branch }}
-      #     revision: ${{ github.event.inputs.revision }}
+      - name: Rolls back to a certain version
+        uses: fivebluepetals/rollback-action@v1.0
+        with:
+          branch: ${{ env.Branch }}
+          revision: ${{ steps.node_release.outputs.release }}
