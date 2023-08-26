@@ -62,13 +62,13 @@ jobs:
           tag_name: ${{ github.ref }}
           release_name: Release ${{ github.ref }}
 
-        - name: Get latest release afternew creation
-         uses: rez0n/actions-github-release@main
-         id: node_release1
-         with:
+      - name: Get latest release afternew creation
+        uses: rez0n/actions-github-release@main
+        id: node_release1
+        with:
           token: ${{ secrets.GITHUB_TOKEN }}
           repository: "kjs2021/maven"
-          type: "latest
+          type: "latest"
 
 
 
