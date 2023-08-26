@@ -46,14 +46,14 @@ jobs:
         with:
          token: ${{ secrets.GITHUB_TOKEN }}
          repository: "kjs2021/maven"
-         type: "latest
+         type: "latest"
 
       - name: echo tag before release created
         run: 
          echo " current tag is ${{ steps.node_release.outputs.release }}"
          echo " current release ${{ steps.node_release.outputs.release_id }}"
 
-       - name: Create Release
+      - name: Create Release
         id: create_release
         uses: actions/create-release@v1
         env:
