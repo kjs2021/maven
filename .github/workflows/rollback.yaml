@@ -46,18 +46,40 @@ jobs:
         with:
          token: ${{ secrets.GITHUB_TOKEN }}
          repository: "kjs2021/maven"
-         type: "latest"
+         type: "latest
 
-
-
-      - name: echo tag
+      - name: echo tag before release created
         run: 
          echo " current tag is ${{ steps.node_release.outputs.release }}"
          echo " current release ${{ steps.node_release.outputs.release_id }}"
+
+       - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+
+        - name: Get latest release afternew creation
+         uses: rez0n/actions-github-release@main
+         id: node_release1
+         with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          repository: "kjs2021/maven"
+          type: "latest
+
+
+
+      - name: echo tag after release created
+        run: 
+         echo " current tag is ${{ steps.node_release1.outputs.release }}"
+         echo " current release ${{ steps.node_release1.outputs.release_id }}"
         
 
-      - name: Rolls back to a certain version
-        uses: fivebluepetals/rollback-action@v1.0
-        with:
-          branch: ${{ env.Branch }}
-          revision: ${{ steps.node_release.outputs.release }}
+      # - name: Rolls back to a certain version
+      #   uses: fivebluepetals/rollback-action@v1.0
+      #   with:
+      #     branch: ${{ env.Branch }}
+      #     revision: ${{ steps.node_release.outputs.release }}
