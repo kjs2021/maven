@@ -77,22 +77,23 @@ jobs:
          echo " current tag is ${{ steps.node_release1.outputs.release }}"
          echo " current release ${{ steps.node_release1.outputs.release_id }}"
         
-
+  Rollback2:
+    runs-on: ubuntu-latest
+    environment: rollback
+    steps:
       - name: Rolls back to a certain version
-        uses: fivebluepetals/rollback-action@v1.0
-        with:
-          branch: ${{ env.Branch }}
-          revision: ${{ steps.node_release.outputs.release }}
+        run:
+         echo "revision ${{ vars.ROLLVERSION }}"
+       
+      # - name: after roll latest release 
+      #   uses: rez0n/actions-github-release@main
+      #   id: node_release-roll
+      #   with:
+      #    token: ${{ secrets.GITHUB_TOKEN }}
+      #    repository: "kjs2021/maven"
+      #    type: "latest"
 
-      - name: after roll latest release 
-        uses: rez0n/actions-github-release@main
-        id: node_release-roll
-        with:
-         token: ${{ secrets.GITHUB_TOKEN }}
-         repository: "kjs2021/maven"
-         type: "latest"
-
-      - name: echo tag after roll 
-        run: 
-         echo " current tag is ${{ steps.node_release-roll.outputs.release }}"
-         echo " current release ${{ steps.node_release-roll.outputs.release_id }}"
+      # - name: echo tag after roll 
+      #   run: 
+      #    echo " current tag is ${{ steps.node_release-roll.outputs.release }}"
+      #    echo " current release ${{ steps.node_release-roll.outputs.release_id }}"
