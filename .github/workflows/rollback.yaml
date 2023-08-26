@@ -1,6 +1,9 @@
 name: Roll-back
 on:
   workflow_dispatch:
+  push:
+    branches:
+     - roll-back
     # inputs:
     #   revision:
     #     description: 'The revision to rollback to'
@@ -24,7 +27,7 @@ jobs:
            fetch-depth: 0
 
       - name: echo
-         run:|
+        run: 
          echo " branchname is ${{ env.Branch }}
          echo " revision is ${{ env.Revision }}
         
