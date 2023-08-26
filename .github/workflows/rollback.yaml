@@ -1,0 +1,85 @@
+name: Roll-back
+on:
+  workflow_dispatch:
+   inputs:
+      revision:
+        description: 'The revision to rollback to'
+        required: true
+
+      branch:
+        description: 'The branch that the rollback affects'
+        required: true
+  push:
+    branches:
+     - roll-back
+    
+env:
+ Branch: ${{ github.event.inputs.Branch }}
+ Revision: ${{ github.event.inputs.revision }}
+
+jobs:
+  Rollback:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+           ref: roll-back
+           fetch-depth: 0
+
+      - name: echo
+        run: 
+         echo " branchname is ${{ env.Branch }}"
+         echo " revision is ${{ env.Revision }}"
+
+      # - name: Get Current Release
+      #   id: get_current_release
+      #   uses: joutvhu/get-release@v1
+      #   with:
+      #     debug: true
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Get latest release 
+        uses: rez0n/actions-github-release@main
+        id: node_release
+        with:
+         token: ${{ secrets.GITHUB_TOKEN }}
+         repository: "kjs2021/maven"
+         type: "latest"
+
+      - name: echo tag before release created
+        run: 
+         echo " current tag is ${{ steps.node_release.outputs.release }}"
+         echo " current release ${{ steps.node_release.outputs.release_id }}"
+
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+
+        - name: Get latest release afternew creation
+         uses: rez0n/actions-github-release@main
+         id: node_release1
+         with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          repository: "kjs2021/maven"
+          type: "latest
+
+
+
+      - name: echo tag after release created
+        run: 
+         echo " current tag is ${{ steps.node_release1.outputs.release }}"
+         echo " current release ${{ steps.node_release1.outputs.release_id }}"
+        
+
+      # - name: Rolls back to a certain version
+      #   uses: fivebluepetals/rollback-action@v1.0
+      #   with:
+      #     branch: ${{ env.Branch }}
+      #     revision: ${{ steps.node_release.outputs.release }}
