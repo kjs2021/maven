@@ -1,20 +1,21 @@
 name: Roll-back
 on:
   workflow_dispatch:
+   inputs:
+      revision:
+        description: 'The revision to rollback to'
+        required: true
+
+      branch:
+        description: 'The branch that the rollback affects'
+        required: true
   push:
     branches:
      - roll-back
-    # inputs:
-    #   revision:
-    #     description: 'The revision to rollback to'
-    #     required: true
-
-    #   branch:
-    #     description: 'The branch that the rollback affects'
-    #     required: true
+    
 env:
  Branch: ${{ github.event.inputs.Branch }}
- Revision: ${{ github.event.inputs.roll-revision }}
+ Revision: ${{ github.event.inputs.revision }}
 
 jobs:
   Rollback:
