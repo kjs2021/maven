@@ -1,5 +1,11 @@
 name: kk Dispatch
 on:
+  workflow_dispatch:
+   inputs:
+      Roll-revision:
+        description: 'The revision to rollback to'
+        required: true
+
   repository_dispatch:
     types: kk
 jobs:
@@ -13,4 +19,5 @@ jobs:
          echo ${{ github.event.client_payload.img }}
          echo ${{ github.event.client_payload.Image_version }}
          echo ${{ github.event.client_payload.sha }}
-         echo ${{ github.event.client_payload.event_type2}}
+         echo ${{ github.event.client_payload.event_type2 }}
+         echo ${{ github.event.inputs.Roll-revision }}
