@@ -6,8 +6,8 @@ on:
         description: 'The revision to rollback to'
         required: true
 
-  # repository_dispatch:
-  #   types: kk
+  repository_dispatch:
+    types: kk
 jobs:
   myEvent:
     runs-on: ubuntu-latest
