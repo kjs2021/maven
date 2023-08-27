@@ -2,8 +2,6 @@ name: Roll-back
 on:
   repository_dispatch:
     type: workflow_api
-permissions:
- contents: write
 
   workflow_dispatch:
    inputs:
@@ -14,10 +12,14 @@ permissions:
       branch:
         description: 'The branch that the rollback affects'
         required: true
+
+  
      
   # push:
   #   branches:
   #    - roll-back
+permissions:
+ contents: write
     
 env:
  Branch: ${{ github.event.inputs.branch }}
