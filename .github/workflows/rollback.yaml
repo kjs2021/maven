@@ -13,9 +13,9 @@ on:
         description: 'The branch that the rollback affects'
         required: true
      
-  push:
-    branches:
-     - roll-back
+  # push:
+  #   branches:
+  #    - roll-back
     
 env:
  Branch: ${{ github.event.inputs.branch }}
