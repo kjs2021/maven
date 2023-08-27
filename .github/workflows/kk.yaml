@@ -2,12 +2,11 @@ name: kk Dispatch
 on:
   workflow_dispatch:
    inputs:
-      Roll-revision:
+      Version:
         description: 'The revision to rollback to'
         required: true
 
-  repository_dispatch:
-    types: kk
+ 
 jobs:
   myEvent:
     runs-on: ubuntu-latest
@@ -16,8 +15,4 @@ jobs:
         # with:
         #   ref: ${{ github.event.client_payload.ref }}
       - run: |
-         echo ${{ github.event.client_payload.img }}
-         echo ${{ github.event.client_payload.Image_version }}
-         echo ${{ github.event.client_payload.sha }}
-         echo ${{ github.event.client_payload.event_type2 }}
-         echo ${{ github.event.inputs.Roll-revision }}
+           echo "The version is ${{ github.event.inputs.Version }}"
