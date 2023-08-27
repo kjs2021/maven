@@ -36,7 +36,7 @@ jobs:
         #    fetch-depth: 0
 
       - name: echo
-        run: 
+        run: | 
          echo "branchname is ${{ env.Branch }}"
          echo "ROLLback revision is ${{ env.Roll-Image }}"
          echo "Image_Name is ${{ env.Image_Name }}"
