@@ -19,7 +19,7 @@ on:
     
 env:
  Branch: ${{ github.event.inputs.branch }}
- Roll-Image:: ${{ github.event.inputs.revision }}
+ Roll-Image: ${{ github.event.inputs.revision }}
  Image_Name: ${{ github.event.client-payload.img }}
  Image_version: ${{ github.event.client-payload.Image_version }}
  
