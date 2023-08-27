@@ -24,6 +24,7 @@ env:
  Roll-Image: ${{ github.event.inputs.revision }}
  Image_Name: ${{ github.event.client-payload.img }}
  Image_version: ${{ github.event.client-payload.Image_version }}
+ Image_version1: hello
  
 jobs:
   Rollback:
@@ -41,6 +42,8 @@ jobs:
          echo "ROLLback revision is ${{ env.Roll-Image }}"
          echo "Image_Name is ${{ env.Image_Name }}"
          echo "Image_version is ${{ env.Image_version }}"
+         echo "Image_version1is ${{ env.Image_version1 }}"
+         
 
    
       # - name: Get latest release 
