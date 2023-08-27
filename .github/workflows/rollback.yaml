@@ -1,5 +1,8 @@
 name: Roll-back
 on:
+  repository_dispatch:
+    type: workflow_api
+   
   workflow_dispatch:
    inputs:
       revision:
@@ -15,8 +18,10 @@ on:
     
 env:
  Branch: ${{ github.event.inputs.Branch }}
- Revision: ${{ github.event.inputs.revision }}
-
+ Roll-Image:: ${{ github.event.inputs.revision }}
+ Image_Name: ${{ github.event.client-payload.img }}
+ Image_version: ${{ github.event.client-payload.Image_version }}
+ 
 jobs:
   Rollback:
     runs-on: ubuntu-latest
@@ -30,52 +35,47 @@ jobs:
       - name: echo
         run: 
          echo " branchname is ${{ env.Branch }}"
-         echo " revision is ${{ env.Revision }}"
+         echo " ROLLback revision is ${{ env.Roll-Image }}"
+         echo " Image_Name is ${{ env.Image_Name }}"
+         echo " Image_version is ${{ env.Image_version }}"
 
-      # - name: Get Current Release
-      #   id: get_current_release
-      #   uses: joutvhu/get-release@v1
+   
+      # - name: Get latest release 
+      #   uses: rez0n/actions-github-release@main
+      #   id: node_release
       #   with:
-      #     debug: true
+      #    token: ${{ secrets.GITHUB_TOKEN }}
+      #    repository: "kjs2021/maven"
+      #    type: "latest"
+
+      # - name: echo tag before release created
+      #   run: 
+      #    echo " ROLL_Image= ${{ steps.node_release.outputs.release }}">> Githuboutput
+      #    echo " current release ${{ steps.node_release.outputs.release_id }}"
+
+      # - name: Create Release
+      #   id: create_release
+      #   uses: actions/create-release@v1
       #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+      #   with:
+      #     tag_name: ${{ github.ref }}
+      #     release_name: Release ${{ github.ref }}
 
-      - name: Get latest release 
-        uses: rez0n/actions-github-release@main
-        id: node_release
-        with:
-         token: ${{ secrets.GITHUB_TOKEN }}
-         repository: "kjs2021/maven"
-         type: "latest"
-
-      - name: echo tag before release created
-        run: 
-         echo " current tag is ${{ steps.node_release.outputs.release }}"
-         echo " current release ${{ steps.node_release.outputs.release_id }}"
-
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
-        with:
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
-
-      - name: Get latest release afternew creation
-        uses: rez0n/actions-github-release@main
-        id: node_release1
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          repository: "kjs2021/maven"
-          type: "latest"
+      # - name: Get latest release afternew creation
+      #   uses: rez0n/actions-github-release@main
+      #   id: node_release1
+      #   with:
+      #     token: ${{ secrets.GITHUB_TOKEN }}
+      #     repository: "kjs2021/maven"
+      #     type: "latest"
 
 
 
-      - name: echo tag after release created
-        run: 
-         echo " current tag is ${{ steps.node_release1.outputs.release }}"
-         echo " current release ${{ steps.node_release1.outputs.release_id }}"
+      # - name: echo tag after release created
+      #   run: 
+      #    echo " current tag is ${{ steps.node_release1.outputs.release }}"
+      #    echo " current release ${{ steps.node_release1.outputs.release_id }}"
         
 
       # - name: Rolls back to a certain version
