@@ -1,17 +1,17 @@
 name: Roll-back
 on:
-  # repository_dispatch:
-  #   type: workflow_api
+  repository_dispatch:
+    type: workflow_api
    
-  workflow_dispatch:
-   inputs:
-      revision:
-        description: 'The revision to rollback to'
-        required: true
+  # workflow_dispatch:
+  #  inputs:
+  #     revision:
+  #       description: 'The revision to rollback to'
+  #       required: true
 
-      branch:
-        description: 'The branch that the rollback affects'
-        required: true
+  #     branch:
+  #       description: 'The branch that the rollback affects'
+  #       required: true
      
   # push:
   #   branches:
