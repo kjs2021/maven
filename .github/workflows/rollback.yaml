@@ -20,8 +20,8 @@ on:
 env:
  Branch: ${{ github.event.inputs.branch }}
  Roll-Image: ${{ github.event.inputs.revision }}
- Image_Name: ${{ github.event.client-payload.img }}
- Image_version: ${{ github.event.client-payload.Image_version }}
+ Image_Name: ${{ github.event.client_payload.img }}
+ Image_version: ${{ github.event.client_payload.Image_version }}
  
 jobs:
   Rollback:
