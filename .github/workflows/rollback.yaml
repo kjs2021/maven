@@ -12,12 +12,13 @@ on:
       branch:
         description: 'The branch that the rollback affects'
         required: true
+     
   push:
     branches:
      - roll-back
     
 env:
- Branch: ${{ github.event.inputs.Branch }}
+ Branch: ${{ github.event.inputs.branch }}
  Roll-Image:: ${{ github.event.inputs.revision }}
  Image_Name: ${{ github.event.client-payload.img }}
  Image_version: ${{ github.event.client-payload.Image_version }}
