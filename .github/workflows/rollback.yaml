@@ -5,15 +5,15 @@ on:
 permissions:
  contents: write
 
-  # workflow_dispatch:
-  #  inputs:
-  #     revision:
-  #       description: 'The revision to rollback to'
-  #       required: true
+  workflow_dispatch:
+   inputs:
+      revision:
+        description: 'The revision to rollback to'
+        required: true
 
-  #     branch:
-  #       description: 'The branch that the rollback affects'
-  #       required: true
+      branch:
+        description: 'The branch that the rollback affects'
+        required: true
      
   # push:
   #   branches:
