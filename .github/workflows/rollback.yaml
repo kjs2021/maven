@@ -29,16 +29,16 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-        with:
-           ref: roll-back
-           fetch-depth: 0
+        # with:
+        #    ref: roll-back
+        #    fetch-depth: 0
 
       - name: echo
         run: 
-         echo " branchname is ${{ env.Branch }}"
-         echo " ROLLback revision is ${{ env.Roll-Image }}"
-         echo " Image_Name is ${{ env.Image_Name }}"
-         echo " Image_version is ${{ env.Image_version }}"
+         echo "branchname is ${{ env.Branch }}"
+         echo "ROLLback revision is ${{ env.Roll-Image }}"
+         echo "Image_Name is ${{ env.Image_Name }}"
+         echo "Image_version is ${{ env.Image_version }}"
 
    
       # - name: Get latest release 
