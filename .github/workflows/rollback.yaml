@@ -2,7 +2,9 @@ name: Roll-back
 on:
   repository_dispatch:
     type: workflow_api
-   
+permissions:
+ contents: write
+
   # workflow_dispatch:
   #  inputs:
   #     revision:
