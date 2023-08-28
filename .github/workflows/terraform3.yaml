@@ -39,35 +39,35 @@ jobs:
       #    echo "${{toJSON(github.event)}}"
       # #   echo " running terraform Title for function ${{ env.Title }}"
 
-  PULLrequest-Revert:
-   runs-on: ubuntu-latest
-   if: ${{ failure () }}
-   needs: [Terraform]
-   steps:
-    - name: Checkout
-      uses: actions/checkout@v2
-    - name: Revert pull request
-      id: pullest
-      uses: repo-sync/pull-request@v2
-      with:
-        destination_branch: "revert"
-        pr_title:  "revert"      
-        pr_label: "revert"
-        pr_reviewer: "kjs2021"                      
-        pr_assignee: "kjs2021" 
-        pr_body: |                                       
-          /revert
+  # PULLrequest-Revert:
+  #  runs-on: ubuntu-latest
+  #  if: ${{ failure () }}
+  #  needs: [Terraform]
+  #  steps:
+  #   - name: Checkout
+  #     uses: actions/checkout@v2
+  #   - name: Revert pull request
+  #     id: pullest
+  #     uses: repo-sync/pull-request@v2
+  #     with:
+  #       destination_branch: "revert"
+  #       pr_title:  "revert"      
+  #       pr_label: "revert"
+  #       pr_reviewer: "kjs2021"                      
+  #       pr_assignee: "kjs2021" 
+  #       pr_body: |                                       
+  #         /revert <commit_sha>
           
-  revert-commit:
-    runs-on: ubuntu-latest
-    needs: [PULLrequest-Revert]
-    if: contains(github.event.comment.body, '/revert')
+  # revert-commit:
+  #   runs-on: ubuntu-latest
+   
+  #   if: contains(github.event.comment.body, '/revert')
 
-    steps:
-      - name: Checkout latest code
-        uses: actions/checkout@v2
-      - name: Automatic Revert
-        uses: srt32/revert@v0.0.1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  #   steps:
+  #     - name: Checkout latest code
+  #       uses: actions/checkout@v2
+  #     - name: Automatic Revert
+  #       uses: srt32/revert@v0.0.1
+  #       env:
+  #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   
