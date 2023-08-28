@@ -50,7 +50,7 @@ jobs:
       id: pullest
       uses: repo-sync/pull-request@v2
       with:
-        destination_branch: "main"
+        destination_branch: "revert"
         pr_title:  "revert"      
         pr_label: "revert"
         pr_reviewer: "kjs2021"                      
