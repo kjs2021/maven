@@ -5,12 +5,13 @@ on:
     branches:
     - main
     paths:
-    - Function/*
+    - MyFirstFolder/*
   workflow_dispatch:
 
 env:
   FunctionName: ${{ github.event.head_commit.message }}
-  FunctionName2: ${{ github.event.commits[0].message }}
+  FunctionName1: Revert
+  
 #   Title: ${{ github.event.pull_request.title }}
 concurrency:
   #group: ${{ github.head_ref || github.run_id }}
@@ -23,10 +24,30 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: teraaform-apply
+      id: apply
       run: |
-         echo 'terraform apply  - replace ="module.cloud_function.${{ env.FunctionName }}.cloudfunction2"'
-         echo 'terraform apply  - replace ="module.cloud_function.${{ env.FunctionName2 }}.cloudfunction2"'
-         echo "The name of the pusher: ${{ github.event.pusher.name }}"
-         echo "The email of the pusher: ${{ github.event.pusher.email }}"
-         echo "${{toJSON(github.event)}}"
-      #   echo " running terraform Title for function ${{ env.Title }}"
+         echo 'terraform apply  - replace ="module.cloud_function.${{ env.FunctionName1 }}.cloudfunction2"'
+      #    echo 'terraform apply  - replace ="module.cloud_function.${{ env.FunctionName2 }}.cloudfunction2"'
+      #    echo "The name of the pusher: ${{ github.event.pusher.name }}"
+      #    echo "The email of the pusher: ${{ github.event.pusher.email }}"
+      #    echo "${{toJSON(github.event)}}"
+      # #   echo " running terraform Title for function ${{ env.Title }}"
+
+  PULLrequest-Revert:
+   runs-on: ubuntu-latest
+   if: ${{ failure () }}
+   needs: [Terraform]
+   steps:
+    - name: Revert pull request
+      id: pullest
+      uses: repo-sync/pull-request@v2
+      with:
+        destination_branch: "main"
+        pr_title:  "revert"      
+        pr_label: "revert"
+        pr_reviewer: "kjs2021"                      
+        pr_assignee: "kjs2021" 
+        pr_body: |                                       
+          /revert
+ 
+  
