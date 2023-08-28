@@ -12,11 +12,7 @@ env:
   FunctionName: ${{ github.event.head_commit.message }}
   FunctionName1: Revert
   
-#   Title: ${{ github.event.pull_request.title }}
-concurrency:
-  #group: ${{ github.head_ref || github.run_id }}
-  group: terraform
-  cancel-in-progress: false
+
 
     
 jobs:
@@ -38,6 +34,19 @@ jobs:
       #    echo "The email of the pusher: ${{ github.event.pusher.email }}"
       #    echo "${{toJSON(github.event)}}"
       # #   echo " running terraform Title for function ${{ env.Title }}"
+
+    # Revert commit (only should run on failure of some phase in a CI/CD pipeline)
+  auto-revert-commit:
+    needs: Terraform
+    runs-on: ubuntu-latest
+    if: always() && (needs.Terraform.result == 'failure')
+    steps:
+      - name: Automatic Commit Revert
+        uses: 'tofu-apis/revert-commit-action@v0.0.37'
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          is-push-enabled: 'true'  
+    
 
   # PULLrequest-Revert:
   #  runs-on: ubuntu-latest
