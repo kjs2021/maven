@@ -20,6 +20,12 @@ concurrency:
 
     
 jobs:
+
+  checkout:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
   Terraform:
     runs-on: ubuntu-latest
     steps:
@@ -38,6 +44,8 @@ jobs:
    if: ${{ failure () }}
    needs: [Terraform]
    steps:
+    # - name: Checkout
+    #   uses: actions/checkout@v2
     - name: Revert pull request
       id: pullest
       uses: repo-sync/pull-request@v2
