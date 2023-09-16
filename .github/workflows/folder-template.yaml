@@ -26,9 +26,11 @@ jobs:
            ls -lrt
            sed -i 's|item-save-api|${{ env.New-api }}|g'  item-save-api/*.yaml 
            cat ./item-save-api/deployment.yaml
-           # mkdir ${{ github.workspace }}/${{ env.New-api }}-base  ${{ github.workspace }}/${{ env.New-api }}-dev
-           # ls -lrt
-           # mv item-save-api ${{ env.New-api }}-base
+           mkdir ${{ github.workspace }}/${{ env.New-api }}-base  ${{ github.workspace }}/${{ env.New-api }}-dev
+           ls -lrt
+           mv item-save-api/*.yaml ${{ env.New-api }}-base/
+           cd ${{ env.New-api }}-base
+           ls -lrt
            # mv item-save-api-patch ${{ env.New-api }}-dev
            # pwd
            # cd ${{ env.New-api }}-base
