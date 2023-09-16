@@ -30,12 +30,12 @@ jobs:
            mv item-save-api ${{ env.New-api }}-base
            mv item-save-api-patch ${{ env.New-api }}-dev
            pwd
-           cd ${{ env.New-api }}-dev
+           cd ${{ env.New-api }}-base
            pwd
            ls -lrt 
-           cd ../${{ env.New-api }}-base
-           ls -lrt   ${{ env.New-api }}-base
-           cat  deployment.yaml
+           cd ../${{ env.New-api }}-dev
+           ls -lrt   
+#cat  deployment.yaml
 
            
 #     - name: Commit & Push changes to differnt repo
