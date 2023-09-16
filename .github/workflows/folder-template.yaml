@@ -24,7 +24,7 @@ jobs:
         run: |
            pwd
            ls -lrt
-           sed -i 's|item-save-api|${{ env. New-api-base }}|g'  item-save-api/*.yaml 
+           sed -i 's|*item-save-api*|${{ env.New-api }}|g'  item-save-api/*.yaml 
            cat ./item-save-api/deployment.yaml
            # mkdir ${{ github.workspace }}/${{ env.New-api }}-base  ${{ github.workspace }}/${{ env.New-api }}-dev
            # ls -lrt
