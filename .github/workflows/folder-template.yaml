@@ -32,7 +32,7 @@ jobs:
            cd ${{ env.New-api }}-base
            ls -lrt
            cat deployment.yaml
-           cat service.yaml
+           cat sevice.yaml
            # mv item-save-api-patch ${{ env.New-api }}-dev
            # pwd
            # cd ${{ env.New-api }}-base
