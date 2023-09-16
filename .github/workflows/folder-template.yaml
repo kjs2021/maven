@@ -31,6 +31,8 @@ jobs:
            mv item-save-api/*.yaml ${{ env.New-api }}-base/
            cd ${{ env.New-api }}-base
            ls -lrt
+           cat deployment.yaml
+           cat service.yaml
            # mv item-save-api-patch ${{ env.New-api }}-dev
            # pwd
            # cd ${{ env.New-api }}-base
