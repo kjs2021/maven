@@ -1,0 +1,70 @@
+name: Create template
+on: 
+ push:
+    branches: [ "main" ]
+ workflow_dispatch:
+# permissions:
+#   contents: write
+#   id-token: write
+env:
+ New-api: new-awesome-api
+ New-api-dev: new-api-dev
+  
+jobs:
+  checkout:
+     runs-on: [self-hosted, Linux, X64, enterprise, onprem]  
+     steps:
+      - uses: actions/checkout@v3
+        with:
+         sparse-checkout: |
+          item-save-api
+          item-save-api-patch   
+         
+      - name: update-new-apiname
+        run:
+           pwd
+           ls -lrt
+           sed -i 's|item-save-api|${{ env. New-api-base }}|g'  item-save-api 
+         
+           mkdir ${{ github.workspace }}/${{ env.New-api }}-base  ${{ github.workspace }}/${{ env.New-api }}-dev
+           mv item-save-api ${{ env.New-api }}-base
+           mv item-save-api-patch ${{ env.New-api }}-dev
+           ls -lrt
+
+           
+#     - name: Commit & Push changes to differnt repo
+#       run: |
+#        cat ${{ github.workspace }}/test1
+#     - uses: actions-js/push@master
+#       with:
+#         github_token: ${{ secrets.GITHUB_TOKEN }}
+#         branch: main
+#         message: 'Auto commit from github action ${{ env.Filename }}'
+        
+        
+#     - name: Pushes to Repository base
+#       uses: tech-thinker/push-to-repo@main
+#       env:
+#        API_TOKEN_GITHUB: ${{ secrets.MAVEN2 }}
+#       with:
+#        user-name: "github-actions[bot]"
+#        user-email: github-actions[bot]@users.noreply.github.com
+#        source-directory: ${{ env.New-api }}-base
+#        destination-github-username: "kjs2021"
+#        destination-repository-name: "maven/Function"
+#        target-branch: test-branch
+    
+    # - name: Pushes test file
+    #   uses: dmnemec/copy_file_to_another_repo_action@main
+    #   env:
+    #     API_TOKEN_GITHUB: ${{ secrets.MAVEN2 }}
+    #   with:
+    #     source_file: '${{ github.workspace }}/Function/${{ env.Filename }}.zip'
+    #     destination_repo: 'kjs2021/maven'
+    #     destination_folder: 'Function'
+    #     destination_branch: test-branch
+    #     user_email: 'kksaini6@yahoo.com'
+    #     user_name: 'kjs2021'
+    #     commit_message: 'A custom message for the commit ${{ env.Filename }}'   
+        
+        
