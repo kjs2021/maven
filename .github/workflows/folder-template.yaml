@@ -28,7 +28,9 @@ jobs:
            mkdir ${{ github.workspace }}/${{ env.New-api }}-base  ${{ github.workspace }}/${{ env.New-api }}-dev
            mv item-save-api ${{ env.New-api }}-base
            mv item-save-api-patch ${{ env.New-api }}-dev
-           ls -lrt
+           ls -lrt ${{ env.New-api }}-dev
+           ls -lrt  ls -lrt  ${{ env.New-api }}-base
+           cat  ${{ env.New-api }}-base/deployment.yaml
 
            
 #     - name: Commit & Push changes to differnt repo
