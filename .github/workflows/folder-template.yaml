@@ -29,7 +29,9 @@ jobs:
            ls -lrt
            mv item-save-api ${{ env.New-api }}-base
            mv item-save-api-patch ${{ env.New-api }}-dev
+           pwd
            cd ${{ env.New-api }}-dev
+           pwd
            ls -lrt 
            cd ../${{ env.New-api }}-base
            ls -lrt   ${{ env.New-api }}-base
