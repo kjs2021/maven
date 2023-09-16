@@ -20,7 +20,7 @@ spec:
         app: item-save-api
     spec:
       containers:
-      - image: htpgsmartitemmanagement.repos.medcity.net/htpg-smart-item-search:1.0.12-pre.3edf567
+      - image: htpgsmartitemmanagement.repos.medcity.net/item-save-api:1.0.12-pre.3edf567
         name: item-save-api
         ports:
           - name: http
@@ -33,21 +33,21 @@ spec:
           limits:
             memory: "128Mi"
             cpu: "500m"
-        # volumeMounts:
-        # - name: item-save-api-svc
-        #   mountPath: "/etc/svc-account"
-        #   readOnly: true
+        volumeMounts:
+        - name: item-save-api-svc
+          mountPath: "/etc/svc-account"
+          readOnly: true
         securityContext:
           allowPrivilegeEscalation: false
         env:
         - name: ASPNETCORE_URLS
           value: "http://+:8080"
-        # - name: GOOGLE_APPLICATION_CREDENTIALS
-        #   value: /etc/svc-account/hca-at-cao-sa-mgmt-42a8528d1e17.json
-      # volumes:
-      # - name: item-save-api-svc
-      #   secret:
-      #     secretName: item-save-api-svc
+        - name: GOOGLE_APPLICATION_CREDENTIALS
+          value: /etc/svc-account/hca-at-cao-sa-mgmt-42a8528d1e17.json
+      volumes:
+      - name: item-save-api-svc
+        secret:
+          secretName: item-save-api-svc
       serviceAccountName: item-save-api-svc
       nodeSelector:
         iam.gke.io/gke-metadata-server-enabled: "true"
