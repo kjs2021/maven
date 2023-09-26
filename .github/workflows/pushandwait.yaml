@@ -3,11 +3,11 @@ on:
   repository_dispatch:
    type: wait
 
-  # workflow_dispatch:
-  #  inputs:
-  #     revision:
-  #       description: 'The revision to rollback to'
-  #       required: true
+  workflow_dispatch:
+   inputs:
+      revision:
+        description: 'The revision to rollback to'
+        required: true
 
  
      
