@@ -1,7 +1,7 @@
 name: Another Workflow
 on:
-  repository_dispatch:
-    type: workflow_api
+  # repository_dispatch:
+  #   type: workflow_api
 
   workflow_dispatch:
    inputs:
