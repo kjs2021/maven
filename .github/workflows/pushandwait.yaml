@@ -37,7 +37,7 @@ jobs:
 
       - name: echo
         run: | 
-         lsss
+         
          echo "ROLLback revision is ${{ env.revision }}"
          echo "Image_Name is ${{ env.Image }}"
          # echo "Image_version is ${{ env.Image_version }}"
