@@ -1,4 +1,4 @@
-name: Roll-back
+name: Another Workflow
 on:
   repository_dispatch:
     type: workflow_api
@@ -9,9 +9,7 @@ on:
         description: 'The revision to rollback to'
         required: true
 
-      branch:
-        description: 'The branch that the rollback affects'
-        required: true
+      
 
   
      
@@ -22,13 +20,12 @@ permissions:
  contents: write
     
 env:
- Branch: ${{ github.event.inputs.branch }}
- Roll-Image: ${{ github.event.inputs.revision }}
- Image_Name: ${{ github.event.client-payload.img }}
- Image_version: ${{ github.event.client-payload.Image_version }}
- Image_version1: hello
- R1: ${{ github.event.client-payload.R1 }}
- R2: ${{ github.event.client-payload.R2 }}
+# Branch: ${{ github.event.inputs.branch }}
+ revision: ${{ github.event.inputs.revision }}
+#Image_version: ${{ github.event.client-payload.Image_version }}
+# Image_version1: hello
+# R1: ${{ github.event.client-payload.R1 }}
+# R2: ${{ github.event.client-payload.R2 }}
  
 jobs:
   Rollback:
@@ -42,13 +39,13 @@ jobs:
 
       - name: echo
         run: | 
-         echo "branchname is ${{ env.Branch }}"
-         echo "ROLLback revision is ${{ env.Roll-Image }}"
-         echo "Image_Name is ${{ env.Image_Name }}"
-         echo "Image_version is ${{ env.Image_version }}"
-         echo "Image_version1is ${{ env.Image_version1 }}"
-         echo "R1is ${{ env.R1 }}"
-         echo "R2 ${{ env.R2 }}"
+        
+         echo "ROLLback revision is ${{ env.revision }}"
+         # echo "Image_Name is ${{ env.Image_Name }}"
+         # echo "Image_version is ${{ env.Image_version }}"
+         # echo "Image_version1is ${{ env.Image_version1 }}"
+         # echo "R1is ${{ env.R1 }}"
+         # echo "R2 ${{ env.R2 }}"
          
 
    
